@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.elisokeland.walking_simulator">
+    package="com.example.starter_architecture_flutter_firebase">
    <application
-        android:label="walking_simulator"
+        android:label="starter_architecture_flutter_firebase"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
