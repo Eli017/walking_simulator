@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:starter_architecture_flutter_firebase/src/features/authentication/data/firebase_auth_repository.dart';
-import 'package:starter_architecture_flutter_firebase/src/features/authentication/presentation/custom_profile_screen.dart';
-import 'package:starter_architecture_flutter_firebase/src/features/authentication/presentation/custom_sign_in_screen.dart';
-import 'package:starter_architecture_flutter_firebase/src/features/entries/presentation/entries_screen.dart';
-import 'package:starter_architecture_flutter_firebase/src/features/entries/domain/entry.dart';
-import 'package:starter_architecture_flutter_firebase/src/features/jobs/domain/job.dart';
-import 'package:starter_architecture_flutter_firebase/src/features/entries/presentation/entry_screen/entry_screen.dart';
-import 'package:starter_architecture_flutter_firebase/src/features/jobs/presentation/job_entries_screen/job_entries_screen.dart';
+import 'package:walking_simulator/src/features/authentication/data/firebase_auth_repository.dart';
+import 'package:walking_simulator/src/features/authentication/presentation/custom_profile_screen.dart';
+import 'package:walking_simulator/src/features/authentication/presentation/custom_sign_in_screen.dart';
+import 'package:walking_simulator/src/features/entries/presentation/entries_screen.dart';
+import 'package:walking_simulator/src/features/entries/domain/entry.dart';
+import 'package:walking_simulator/src/features/jobs/domain/job.dart';
+import 'package:walking_simulator/src/features/entries/presentation/entry_screen/entry_screen.dart';
+import 'package:walking_simulator/src/features/jobs/presentation/job_entries_screen/job_entries_screen.dart';
 import 'package:go_router/go_router.dart';
-import 'package:starter_architecture_flutter_firebase/src/features/jobs/presentation/edit_job_screen/edit_job_screen.dart';
-import 'package:starter_architecture_flutter_firebase/src/features/jobs/presentation/jobs_screen/jobs_screen.dart';
-import 'package:starter_architecture_flutter_firebase/src/features/onboarding/data/onboarding_repository.dart';
-import 'package:starter_architecture_flutter_firebase/src/features/onboarding/presentation/onboarding_screen.dart';
-import 'package:starter_architecture_flutter_firebase/src/routing/go_router_refresh_stream.dart';
-import 'package:starter_architecture_flutter_firebase/src/routing/scaffold_with_bottom_nav_bar.dart';
+import 'package:walking_simulator/src/features/jobs/presentation/edit_job_screen/edit_job_screen.dart';
+import 'package:walking_simulator/src/features/jobs/presentation/jobs_screen/jobs_screen.dart';
+import 'package:walking_simulator/src/features/onboarding/data/onboarding_repository.dart';
+import 'package:walking_simulator/src/features/onboarding/presentation/onboarding_screen.dart';
+import 'package:walking_simulator/src/routing/go_router_refresh_stream.dart';
+import 'package:walking_simulator/src/routing/scaffold_with_bottom_nav_bar.dart';
 
 part 'app_router.g.dart';
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:starter_architecture_flutter_firebase/src/utils/format.dart';
-import 'package:starter_architecture_flutter_firebase/src/features/entries/domain/entry.dart';
-import 'package:starter_architecture_flutter_firebase/src/features/jobs/domain/job.dart';
+import 'package:walking_simulator/src/utils/format.dart';
+import 'package:walking_simulator/src/features/entries/domain/entry.dart';
+import 'package:walking_simulator/src/features/jobs/domain/job.dart';
 
 class EntryListItem extends StatelessWidget {
   const EntryListItem({

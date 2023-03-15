@@ -1,6 +1,6 @@
 {
-    "name": "starter_architecture_flutter_firebase",
-    "short_name": "starter_architecture_flutter_firebase",
+    "name": "walking_simulator",
+    "short_name": "walking_simulator",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
