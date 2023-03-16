@@ -14,18 +14,18 @@ class JourneysRepository {
   const JourneysRepository(this._firestore);
   final FirebaseFirestore _firestore;
 
-  static String journeyPath(String uid, String jobId) => 'users/$uid/journeys/$jobId';
-  static String journeysPath(String uid) => 'users/$uid/journeys';
+  static String journeyPath(String uid, String journeyId) => 'journeys/$journeyId';
+  static String journeysPath(String uid) => 'journeys';
   static String entriesPath(String uid) => EntriesRepository.entriesPath(uid);
 
   // create
   Future<void> addJourney(
           {required UserID uid,
           required String name,
-          required int ratePerHour}) =>
+          required int distance}) =>
       _firestore.collection(journeysPath(uid)).add({
         'name': name,
-        'ratePerHour': ratePerHour,
+        'distance': distance,
       });
 
   // update

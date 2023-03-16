@@ -27,7 +27,7 @@ class _EditJobPageState extends ConsumerState<EditJobScreen> {
     super.initState();
     if (widget.job != null) {
       _name = widget.job?.name;
-      _ratePerHour = widget.job?.ratePerHour;
+      _ratePerHour = widget.job?.distance;
     }
   }
 

@@ -21,7 +21,7 @@ final countProvider = AutoDisposeProvider<int>.internal(
 
 typedef CountRef = AutoDisposeProviderRef<int>;
 String _$editJobScreenControllerHash() =>
-    r'4534bbf55021265dde7c7f1d4ba2e5547c6e3996';
+    r'33d27236884067cae54610e88fdc6f107687b874';
 
 /// See also [EditJobScreenController].
 @ProviderFor(EditJobScreenController)

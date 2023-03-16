@@ -42,14 +42,14 @@ class EditJobScreenController extends _$EditJobScreenController {
     } else {
       // job previously existed
       if (jobId != null) {
-        final job = Journey(id: jobId, name: name, ratePerHour: ratePerHour);
+        final job = Journey(id: jobId, name: name, distance: ratePerHour);
         state = await AsyncValue.guard(
           () => repository.updateJourney(uid: currentUser.uid, job: job),
         );
       } else {
         state = await AsyncValue.guard(
           () => repository.addJourney(
-              uid: currentUser.uid, name: name, ratePerHour: ratePerHour),
+              uid: currentUser.uid, name: name, distance: ratePerHour),
         );
       }
       return state.hasError == false;
