@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:walking_simulator/src/common_widgets/date_time_picker.dart';
 import 'package:walking_simulator/src/features/entries/domain/entry.dart';
-import 'package:walking_simulator/src/features/jobs/domain/job.dart';
+import 'package:walking_simulator/src/features/journeys/domain/journey.dart';
 import 'package:walking_simulator/src/features/entries/presentation/entry_screen/entry_screen_controller.dart';
 import 'package:walking_simulator/src/utils/async_value_ui.dart';
 import 'package:walking_simulator/src/utils/format.dart';

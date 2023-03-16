@@ -6,10 +6,10 @@ import 'package:walking_simulator/src/features/entries/data/entries_repository.d
 import 'package:walking_simulator/src/features/entries/domain/daily_jobs_details.dart';
 import 'package:walking_simulator/src/features/entries/domain/entries_list_tile_model.dart';
 import 'package:walking_simulator/src/features/entries/domain/entry_job.dart';
-import 'package:walking_simulator/src/features/jobs/data/jobs_repository.dart';
+import 'package:walking_simulator/src/features/journeys/data/journeys_repository.dart';
 import 'package:walking_simulator/src/utils/format.dart';
 import 'package:walking_simulator/src/features/entries/domain/entry.dart';
-import 'package:walking_simulator/src/features/jobs/domain/job.dart';
+import 'package:walking_simulator/src/features/journeys/domain/journey.dart';
 
 part 'entries_service.g.dart';
 

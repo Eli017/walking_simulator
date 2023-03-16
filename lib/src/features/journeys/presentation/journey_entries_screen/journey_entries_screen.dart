@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:walking_simulator/src/common_widgets/async_value_widget.dart';
-import 'package:walking_simulator/src/features/jobs/data/jobs_repository.dart';
-import 'package:walking_simulator/src/features/jobs/domain/job.dart';
-import 'package:walking_simulator/src/features/jobs/presentation/job_entries_screen/job_entries_list.dart';
+import 'package:walking_simulator/src/features/journeys/data/journeys_repository.dart';
+import 'package:walking_simulator/src/features/journeys/domain/journey.dart';
+import 'package:walking_simulator/src/features/journeys/presentation/journey_entries_screen/journey_entries_list.dart';
 import 'package:walking_simulator/src/routing/app_router.dart';
 
 class JobEntriesScreen extends ConsumerWidget {

@@ -5,12 +5,12 @@ import 'package:walking_simulator/src/features/authentication/presentation/custo
 import 'package:walking_simulator/src/features/authentication/presentation/custom_sign_in_screen.dart';
 import 'package:walking_simulator/src/features/entries/presentation/entries_screen.dart';
 import 'package:walking_simulator/src/features/entries/domain/entry.dart';
-import 'package:walking_simulator/src/features/jobs/domain/job.dart';
+import 'package:walking_simulator/src/features/journeys/domain/journey.dart';
 import 'package:walking_simulator/src/features/entries/presentation/entry_screen/entry_screen.dart';
-import 'package:walking_simulator/src/features/jobs/presentation/job_entries_screen/job_entries_screen.dart';
+import 'package:walking_simulator/src/features/journeys/presentation/journey_entries_screen/journey_entries_screen.dart';
 import 'package:go_router/go_router.dart';
-import 'package:walking_simulator/src/features/jobs/presentation/edit_job_screen/edit_job_screen.dart';
-import 'package:walking_simulator/src/features/jobs/presentation/jobs_screen/jobs_screen.dart';
+import 'package:walking_simulator/src/features/journeys/presentation/edit_journey_screen/edit_journey_screen.dart';
+import 'package:walking_simulator/src/features/journeys/presentation/journeys_screen/journeys_screen.dart';
 import 'package:walking_simulator/src/features/onboarding/data/onboarding_repository.dart';
 import 'package:walking_simulator/src/features/onboarding/presentation/onboarding_screen.dart';
 import 'package:walking_simulator/src/routing/go_router_refresh_stream.dart';

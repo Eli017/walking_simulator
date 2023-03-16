@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:walking_simulator/src/constants/strings.dart';
-import 'package:walking_simulator/src/features/jobs/data/jobs_repository.dart';
-import 'package:walking_simulator/src/features/jobs/domain/job.dart';
-import 'package:walking_simulator/src/features/jobs/presentation/jobs_screen/jobs_screen_controller.dart';
+import 'package:walking_simulator/src/features/journeys/data/journeys_repository.dart';
+import 'package:walking_simulator/src/features/journeys/domain/journey.dart';
+import 'package:walking_simulator/src/features/journeys/presentation/journeys_screen/journeys_screen_controller.dart';
 import 'package:walking_simulator/src/routing/app_router.dart';
 import 'package:walking_simulator/src/utils/async_value_ui.dart';
 

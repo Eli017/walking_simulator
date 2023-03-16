@@ -2,11 +2,11 @@ import 'dart:async';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:walking_simulator/src/features/authentication/data/firebase_auth_repository.dart';
-import 'package:walking_simulator/src/features/jobs/data/jobs_repository.dart';
-import 'package:walking_simulator/src/features/jobs/domain/job.dart';
-import 'package:walking_simulator/src/features/jobs/presentation/edit_job_screen/job_submit_exception.dart';
+import 'package:walking_simulator/src/features/journeys/data/journeys_repository.dart';
+import 'package:walking_simulator/src/features/journeys/domain/journey.dart';
+import 'package:walking_simulator/src/features/journeys/presentation/edit_journey_screen/journey_submit_exception.dart';
 
-part 'edit_job_screen_controller.g.dart';
+part 'edit_journey_screen_controller.g.dart';
 
 @riverpod
 class EditJobScreenController extends _$EditJobScreenController {

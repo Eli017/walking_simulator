@@ -6,9 +6,9 @@ import 'package:walking_simulator/src/features/authentication/data/firebase_auth
 import 'package:walking_simulator/src/features/authentication/domain/app_user.dart';
 import 'package:walking_simulator/src/features/entries/data/entries_repository.dart';
 import 'package:walking_simulator/src/features/entries/domain/entry.dart';
-import 'package:walking_simulator/src/features/jobs/domain/job.dart';
+import 'package:walking_simulator/src/features/journeys/domain/journey.dart';
 
-part 'jobs_repository.g.dart';
+part 'journeys_repository.g.dart';
 
 class JourneysRepository {
   const JourneysRepository(this._firestore);

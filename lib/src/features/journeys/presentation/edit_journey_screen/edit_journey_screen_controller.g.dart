@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'edit_job_screen_controller.dart';
+part of 'edit_journey_screen_controller.dart';
 
 // **************************************************************************
 // RiverpodGenerator

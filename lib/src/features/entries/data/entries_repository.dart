@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:walking_simulator/src/features/authentication/data/firebase_auth_repository.dart';
 import 'package:walking_simulator/src/features/authentication/domain/app_user.dart';
 import 'package:walking_simulator/src/features/entries/domain/entry.dart';
-import 'package:walking_simulator/src/features/jobs/domain/job.dart';
+import 'package:walking_simulator/src/features/journeys/domain/journey.dart';
 
 class EntriesRepository {
   const EntriesRepository(this._firestore);

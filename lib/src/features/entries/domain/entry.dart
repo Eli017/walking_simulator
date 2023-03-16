@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:walking_simulator/src/features/jobs/domain/job.dart';
+import 'package:walking_simulator/src/features/journeys/domain/journey.dart';
 
 typedef EntryID = String;
 

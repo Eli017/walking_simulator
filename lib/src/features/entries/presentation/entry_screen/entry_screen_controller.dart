@@ -4,7 +4,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:walking_simulator/src/features/authentication/data/firebase_auth_repository.dart';
 import 'package:walking_simulator/src/features/entries/data/entries_repository.dart';
 import 'package:walking_simulator/src/features/entries/domain/entry.dart';
-import 'package:walking_simulator/src/features/jobs/domain/job.dart';
+import 'package:walking_simulator/src/features/journeys/domain/journey.dart';
 
 part 'entry_screen_controller.g.dart';
 

@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:walking_simulator/src/features/entries/domain/entry.dart';
-import 'package:walking_simulator/src/features/jobs/domain/job.dart';
+import 'package:walking_simulator/src/features/journeys/domain/journey.dart';
 
 class EntryJob extends Equatable {
   const EntryJob(this.entry, this.job);
