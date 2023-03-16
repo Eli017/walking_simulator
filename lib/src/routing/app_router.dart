@@ -25,10 +25,10 @@ final _shellNavigatorKey = GlobalKey<NavigatorState>();
 enum AppRoute {
   onboarding,
   signIn,
-  jobs,
-  job,
-  addJob,
-  editJob,
+  journeys,
+  journey,
+  addJourney,
+  editJourney,
   entry,
   addEntry,
   editEntry,
@@ -57,10 +57,10 @@ GoRouter goRouter(GoRouterRef ref) {
       final isLoggedIn = authRepository.currentUser != null;
       if (isLoggedIn) {
         if (state.subloc.startsWith('/signIn')) {
-          return '/jobs';
+          return '/journeys';
         }
       } else {
-        if (state.subloc.startsWith('/jobs') ||
+        if (state.subloc.startsWith('/journeys') ||
             state.subloc.startsWith('/entries') ||
             state.subloc.startsWith('/account')) {
           return '/signIn';
@@ -93,33 +93,33 @@ GoRouter goRouter(GoRouterRef ref) {
         },
         routes: [
           GoRoute(
-            path: '/jobs',
-            name: AppRoute.jobs.name,
+            path: '/journeys',
+            name: AppRoute.journeys.name,
             pageBuilder: (context, state) => NoTransitionPage(
               key: state.pageKey,
-              child: const JobsScreen(),
+              child: const JourneysScreen(),
             ),
             routes: [
               GoRoute(
                 path: 'add',
-                name: AppRoute.addJob.name,
+                name: AppRoute.addJourney.name,
                 parentNavigatorKey: _rootNavigatorKey,
                 pageBuilder: (context, state) {
                   return MaterialPage(
                     key: state.pageKey,
                     fullscreenDialog: true,
-                    child: const EditJobScreen(),
+                    child: const EditJourneyScreen(),
                   );
                 },
               ),
               GoRoute(
                 path: ':id',
-                name: AppRoute.job.name,
+                name: AppRoute.journey.name,
                 pageBuilder: (context, state) {
                   final id = state.params['id']!;
                   return MaterialPage(
                     key: state.pageKey,
-                    child: JobEntriesScreen(jobId: id),
+                    child: JourneyEntriesScreen(journeyId: id),
                   );
                 },
                 routes: [
@@ -157,14 +157,14 @@ GoRouter goRouter(GoRouterRef ref) {
                   ),
                   GoRoute(
                     path: 'edit',
-                    name: AppRoute.editJob.name,
+                    name: AppRoute.editJourney.name,
                     pageBuilder: (context, state) {
                       final jobId = state.params['id'];
                       final job = state.extra as Journey?;
                       return MaterialPage(
                         key: state.pageKey,
                         fullscreenDialog: true,
-                        child: EditJobScreen(jobId: jobId, job: job),
+                        child: EditJourneyScreen(journeyId: jobId, journey: job),
                       );
                     },
                   ),

@@ -9,17 +9,17 @@ import 'package:walking_simulator/src/features/journeys/presentation/edit_journe
 part 'edit_journey_screen_controller.g.dart';
 
 @riverpod
-class EditJobScreenController extends _$EditJobScreenController {
+class EditJourneyScreenController extends _$EditJourneyScreenController {
   @override
   FutureOr<void> build() {
     //
   }
 
   Future<bool> submit(
-      {JourneyID? jobId,
-      Journey? oldJob,
+      {JourneyID? journeyId,
+      Journey? oldJourney,
       required String name,
-      required int ratePerHour}) async {
+      required int distance}) async {
     final currentUser = ref.read(authRepositoryProvider).currentUser;
     if (currentUser == null) {
       throw AssertionError('User can\'t be null');
@@ -28,28 +28,28 @@ class EditJobScreenController extends _$EditJobScreenController {
     state = const AsyncLoading().copyWithPrevious(state);
     // check if name is already in use
     final repository = ref.read(journeysRepositoryProvider);
-    final jobs = await repository.fetchJourneys(uid: currentUser.uid);
+    final journeys = await repository.fetchJourneys(uid: currentUser.uid);
     final allLowerCaseNames =
-        jobs.map((job) => job.name.toLowerCase()).toList();
-    // it's ok to use the same name as the old job
-    if (oldJob != null) {
-      allLowerCaseNames.remove(oldJob.name.toLowerCase());
+        journeys.map((journey) => journey.name.toLowerCase()).toList();
+    // it's ok to use the same name as the old journey
+    if (oldJourney != null) {
+      allLowerCaseNames.remove(oldJourney.name.toLowerCase());
     }
     // check if name is already used
     if (allLowerCaseNames.contains(name.toLowerCase())) {
-      state = AsyncError(JobSubmitException(), StackTrace.current);
+      state = AsyncError(JourneySubmitException(), StackTrace.current);
       return false;
     } else {
-      // job previously existed
-      if (jobId != null) {
-        final job = Journey(id: jobId, name: name, distance: ratePerHour);
+      // journey previously existed
+      if (journeyId != null) {
+        final job = Journey(id: journeyId, name: name, distance: distance);
         state = await AsyncValue.guard(
-          () => repository.updateJourney(uid: currentUser.uid, job: job),
+          () => repository.updateJourney(uid: currentUser.uid, journey: job),
         );
       } else {
         state = await AsyncValue.guard(
           () => repository.addJourney(
-              uid: currentUser.uid, name: name, distance: ratePerHour),
+              uid: currentUser.uid, name: name, distance: distance),
         );
       }
       return state.hasError == false;

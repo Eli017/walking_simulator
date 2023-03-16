@@ -10,17 +10,17 @@ import 'package:walking_simulator/src/features/journeys/presentation/journey_ent
 import 'package:walking_simulator/src/routing/app_router.dart';
 import 'package:walking_simulator/src/utils/async_value_ui.dart';
 
-class JobEntriesList extends ConsumerWidget {
-  const JobEntriesList({super.key, required this.job});
-  final Journey job;
+class JourneyEntriesList extends ConsumerWidget {
+  const JourneyEntriesList({super.key, required this.journey});
+  final Journey journey;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ref.listen<AsyncValue>(
-      jobsEntriesListControllerProvider,
+      journeysEntriesListControllerProvider,
       (_, state) => state.showAlertDialogOnError(context),
     );
-    final jobEntriesQuery = ref.watch(jobEntriesQueryProvider(job.id));
+    final jobEntriesQuery = ref.watch(jobEntriesQueryProvider(journey.id));
     return FirestoreListView<Entry>(
       query: jobEntriesQuery,
       itemBuilder: (context, doc) {
@@ -28,13 +28,13 @@ class JobEntriesList extends ConsumerWidget {
         return DismissibleEntryListItem(
           dismissibleKey: Key('entry-${entry.id}'),
           entry: entry,
-          job: job,
+          journey: journey,
           onDismissed: () => ref
-              .read(jobsEntriesListControllerProvider.notifier)
+              .read(journeysEntriesListControllerProvider.notifier)
               .deleteEntry(entry.id),
           onTap: () => context.goNamed(
             AppRoute.entry.name,
-            params: {'id': job.id, 'eid': entry.id},
+            params: {'id': journey.id, 'eid': entry.id},
             extra: entry,
           ),
         );

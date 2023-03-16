@@ -31,7 +31,7 @@ class EntriesService {
   static List<EntryJob> _entriesJobsCombiner(
       List<Entry> entries, List<Journey> jobs) {
     return entries.map((entry) {
-      final job = jobs.firstWhere((job) => job.id == entry.jobId);
+      final job = jobs.firstWhere((job) => job.id == entry.journeyId);
       return EntryJob(entry, job);
     }).toList();
   }

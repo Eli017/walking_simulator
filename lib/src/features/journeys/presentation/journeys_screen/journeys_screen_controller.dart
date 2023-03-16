@@ -8,13 +8,13 @@ import 'package:walking_simulator/src/features/journeys/domain/journey.dart';
 part 'journeys_screen_controller.g.dart';
 
 @riverpod
-class JobsScreenController extends _$JobsScreenController {
+class JourneysScreenController extends _$JourneysScreenController {
   @override
   FutureOr<void> build() {
     // ok to leave this empty if the return type is FutureOr<void>
   }
 
-  Future<void> deleteJob(Journey job) async {
+  Future<void> deleteJourney(Journey journey) async {
     final currentUser = ref.read(authRepositoryProvider).currentUser;
     if (currentUser == null) {
       throw AssertionError('User can\'t be null');
@@ -22,6 +22,6 @@ class JobsScreenController extends _$JobsScreenController {
     final repository = ref.read(journeysRepositoryProvider);
     state = const AsyncLoading();
     state = await AsyncValue.guard(
-        () => repository.deleteJourney(uid: currentUser.uid, jobId: job.id));
+        () => repository.deleteJourney(uid: currentUser.uid, journeyId: journey.id));
   }
 }

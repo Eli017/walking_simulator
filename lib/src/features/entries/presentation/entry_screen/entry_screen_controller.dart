@@ -39,7 +39,7 @@ class EntryScreenController extends _$EntryScreenController {
     } else {
       final entry = Entry(
         id: entryId,
-        jobId: jobId,
+        journeyId: jobId,
         start: start,
         end: end,
         comment: comment,

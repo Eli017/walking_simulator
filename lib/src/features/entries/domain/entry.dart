@@ -6,19 +6,19 @@ typedef EntryID = String;
 class Entry extends Equatable {
   const Entry({
     required this.id,
-    required this.jobId,
+    required this.journeyId,
     required this.start,
     required this.end,
     required this.comment,
   });
   final EntryID id;
-  final JourneyID jobId;
+  final JourneyID journeyId;
   final DateTime start;
   final DateTime end;
   final String comment;
 
   @override
-  List<Object> get props => [id, jobId, start, end, comment];
+  List<Object> get props => [id, journeyId, start, end, comment];
 
   @override
   bool get stringify => true;
@@ -31,7 +31,7 @@ class Entry extends Equatable {
     final endMilliseconds = value['end'] as int;
     return Entry(
       id: id,
-      jobId: value['jobId'] as String,
+      journeyId: value['journeyId'] as String,
       start: DateTime.fromMillisecondsSinceEpoch(startMilliseconds),
       end: DateTime.fromMillisecondsSinceEpoch(endMilliseconds),
       comment: value['comment'] as String? ?? '',
@@ -40,7 +40,7 @@ class Entry extends Equatable {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'jobId': jobId,
+      'journeyId': journeyId,
       'start': start.millisecondsSinceEpoch,
       'end': end.millisecondsSinceEpoch,
       'comment': comment,

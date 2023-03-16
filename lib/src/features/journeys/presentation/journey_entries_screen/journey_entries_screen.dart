@@ -7,47 +7,47 @@ import 'package:walking_simulator/src/features/journeys/domain/journey.dart';
 import 'package:walking_simulator/src/features/journeys/presentation/journey_entries_screen/journey_entries_list.dart';
 import 'package:walking_simulator/src/routing/app_router.dart';
 
-class JobEntriesScreen extends ConsumerWidget {
-  const JobEntriesScreen({super.key, required this.jobId});
-  final JourneyID jobId;
+class JourneyEntriesScreen extends ConsumerWidget {
+  const JourneyEntriesScreen({super.key, required this.journeyId});
+  final JourneyID journeyId;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final jobAsync = ref.watch(journeyStreamProvider(jobId));
+    final journeyAsync = ref.watch(journeyStreamProvider(journeyId));
     return ScaffoldAsyncValueWidget<Journey>(
-      value: jobAsync,
-      data: (job) => JobEntriesPageContents(job: job),
+      value: journeyAsync,
+      data: (journey) => JourneyEntriesPageContents(journey: journey),
     );
   }
 }
 
-class JobEntriesPageContents extends StatelessWidget {
-  const JobEntriesPageContents({super.key, required this.job});
-  final Journey job;
+class JourneyEntriesPageContents extends StatelessWidget {
+  const JourneyEntriesPageContents({super.key, required this.journey});
+  final Journey journey;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(job.name),
+        title: Text(journey.name),
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.edit, color: Colors.white),
             onPressed: () => context.goNamed(
-              AppRoute.editJob.name,
-              params: {'id': job.id},
-              extra: job,
+              AppRoute.editJourney.name,
+              params: {'id': journey.id},
+              extra: journey,
             ),
           ),
         ],
       ),
-      body: JobEntriesList(job: job),
+      body: JourneyEntriesList(journey: journey),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add, color: Colors.white),
         onPressed: () => context.goNamed(
           AppRoute.addEntry.name,
-          params: {'id': job.id},
-          extra: job,
+          params: {'id': journey.id},
+          extra: journey,
         ),
       ),
     );

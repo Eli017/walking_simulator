@@ -37,7 +37,7 @@ final journeysQueryProvider = AutoDisposeProvider<Query<Journey>>.internal(
 );
 
 typedef JourneysQueryRef = AutoDisposeProviderRef<Query<Journey>>;
-String _$journeyStreamHash() => r'66d2d0c486e091baceac480f4a1fd2649053014d';
+String _$journeyStreamHash() => r'a2f17760d25b7632f46e117423642dc0e24857d5';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -73,10 +73,10 @@ class JourneyStreamFamily extends Family<AsyncValue<Journey>> {
 
   /// See also [journeyStream].
   JourneyStreamProvider call(
-    String jobId,
+    String journeyId,
   ) {
     return JourneyStreamProvider(
-      jobId,
+      journeyId,
     );
   }
 
@@ -85,7 +85,7 @@ class JourneyStreamFamily extends Family<AsyncValue<Journey>> {
     covariant JourneyStreamProvider provider,
   ) {
     return call(
-      provider.jobId,
+      provider.journeyId,
     );
   }
 
@@ -108,11 +108,11 @@ class JourneyStreamFamily extends Family<AsyncValue<Journey>> {
 class JourneyStreamProvider extends AutoDisposeStreamProvider<Journey> {
   /// See also [journeyStream].
   JourneyStreamProvider(
-    this.jobId,
+    this.journeyId,
   ) : super.internal(
           (ref) => journeyStream(
             ref,
-            jobId,
+            journeyId,
           ),
           from: journeyStreamProvider,
           name: r'journeyStreamProvider',
@@ -125,17 +125,17 @@ class JourneyStreamProvider extends AutoDisposeStreamProvider<Journey> {
               JourneyStreamFamily._allTransitiveDependencies,
         );
 
-  final String jobId;
+  final String journeyId;
 
   @override
   bool operator ==(Object other) {
-    return other is JourneyStreamProvider && other.jobId == jobId;
+    return other is JourneyStreamProvider && other.journeyId == journeyId;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, jobId.hashCode);
+    hash = _SystemHash.combine(hash, journeyId.hashCode);
 
     return _SystemHash.finish(hash);
   }

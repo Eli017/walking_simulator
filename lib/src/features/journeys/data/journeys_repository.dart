@@ -29,33 +29,33 @@ class JourneysRepository {
       });
 
   // update
-  Future<void> updateJourney({required UserID uid, required Journey job}) =>
-      _firestore.doc(journeyPath(uid, job.id)).update(job.toMap());
+  Future<void> updateJourney({required UserID uid, required Journey journey}) =>
+      _firestore.doc(journeyPath(uid, journey.id)).update(journey.toMap());
 
   // delete
-  Future<void> deleteJourney({required UserID uid, required JourneyID jobId}) async {
-    // delete where entry.jobId == job.jobId
+  Future<void> deleteJourney({required UserID uid, required JourneyID journeyId}) async {
+    // delete where entry.journeyId == journey.journeyId
     final entriesRef = _firestore.collection(entriesPath(uid));
     final entries = await entriesRef.get();
     for (final snapshot in entries.docs) {
       final entry = Entry.fromMap(snapshot.data(), snapshot.id);
-      if (entry.jobId == jobId) {
+      if (entry.journeyId == journeyId) {
         await snapshot.reference.delete();
       }
     }
-    // delete job
-    final jobRef = _firestore.doc(journeyPath(uid, jobId));
-    await jobRef.delete();
+    // delete journey
+    final journeyRef = _firestore.doc(journeyPath(uid, journeyId));
+    await journeyRef.delete();
   }
 
   // read
-  Stream<Journey> watchJourney({required UserID uid, required JourneyID jobId}) =>
+  Stream<Journey> watchJourney({required UserID uid, required JourneyID journeyId}) =>
       _firestore
-          .doc(journeyPath(uid, jobId))
+          .doc(journeyPath(uid, journeyId))
           .withConverter<Journey>(
             fromFirestore: (snapshot, _) =>
                 Journey.fromMap(snapshot.data()!, snapshot.id),
-            toFirestore: (job, _) => job.toMap(),
+            toFirestore: (journey, _) => journey.toMap(),
           )
           .snapshots()
           .map((snapshot) => snapshot.data()!);
@@ -68,12 +68,12 @@ class JourneysRepository {
       _firestore.collection(journeysPath(uid)).withConverter(
             fromFirestore: (snapshot, _) =>
                 Journey.fromMap(snapshot.data()!, snapshot.id),
-            toFirestore: (job, _) => job.toMap(),
+            toFirestore: (journey, _) => journey.toMap(),
           );
 
   Future<List<Journey>> fetchJourneys({required UserID uid}) async {
-    final jobs = await queryJourneys(uid: uid).get();
-    return jobs.docs.map((doc) => doc.data()).toList();
+    final journeys = await queryJourneys(uid: uid).get();
+    return journeys.docs.map((doc) => doc.data()).toList();
   }
 }
 
@@ -93,11 +93,11 @@ Query<Journey> journeysQuery(JourneysQueryRef ref) {
 }
 
 @riverpod
-Stream<Journey> journeyStream(JourneyStreamRef ref, JourneyID jobId) {
+Stream<Journey> journeyStream(JourneyStreamRef ref, JourneyID journeyId) {
   final user = ref.watch(firebaseAuthProvider).currentUser;
   if (user == null) {
     throw AssertionError('User can\'t be null');
   }
   final repository = ref.watch(journeysRepositoryProvider);
-  return repository.watchJourney(uid: user.uid, jobId: jobId);
+  return repository.watchJourney(uid: user.uid, journeyId: journeyId);
 }
