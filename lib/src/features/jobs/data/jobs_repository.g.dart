@@ -6,36 +6,38 @@ part of 'jobs_repository.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$jobsRepositoryHash() => r'99834710b25b2229bf6bd85bb1e522bfb2b61d5b';
+String _$journeysRepositoryHash() =>
+    r'2b2ca3f69409ab3feb11d88583d87bca6b39c9ce';
 
-/// See also [jobsRepository].
-@ProviderFor(jobsRepository)
-final jobsRepositoryProvider = Provider<JobsRepository>.internal(
-  jobsRepository,
-  name: r'jobsRepositoryProvider',
+/// See also [journeysRepository].
+@ProviderFor(journeysRepository)
+final journeysRepositoryProvider = Provider<JourneysRepository>.internal(
+  journeysRepository,
+  name: r'journeysRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$jobsRepositoryHash,
+      : _$journeysRepositoryHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef JobsRepositoryRef = ProviderRef<JobsRepository>;
-String _$jobsQueryHash() => r'46482866aecb8be7e41fd6bdb0e2d5a6a87fc350';
+typedef JourneysRepositoryRef = ProviderRef<JourneysRepository>;
+String _$journeysQueryHash() => r'458803e0054d285ff40acf6c3fad033334f8617f';
 
-/// See also [jobsQuery].
-@ProviderFor(jobsQuery)
-final jobsQueryProvider = AutoDisposeProvider<Query<Job>>.internal(
-  jobsQuery,
-  name: r'jobsQueryProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$jobsQueryHash,
+/// See also [journeysQuery].
+@ProviderFor(journeysQuery)
+final journeysQueryProvider = AutoDisposeProvider<Query<Job>>.internal(
+  journeysQuery,
+  name: r'journeysQueryProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$journeysQueryHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef JobsQueryRef = AutoDisposeProviderRef<Query<Job>>;
-String _$jobStreamHash() => r'72fc86cf080cd4a6bdb2da9f13ff81efb312521e';
+typedef JourneysQueryRef = AutoDisposeProviderRef<Query<Job>>;
+String _$journeyStreamHash() => r'5de1fb680dcc0b1d3bc216a97b060bb3199df250';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -58,29 +60,29 @@ class _SystemHash {
   }
 }
 
-typedef JobStreamRef = AutoDisposeStreamProviderRef<Job>;
+typedef JourneyStreamRef = AutoDisposeStreamProviderRef<Job>;
 
-/// See also [jobStream].
-@ProviderFor(jobStream)
-const jobStreamProvider = JobStreamFamily();
+/// See also [journeyStream].
+@ProviderFor(journeyStream)
+const journeyStreamProvider = JourneyStreamFamily();
 
-/// See also [jobStream].
-class JobStreamFamily extends Family<AsyncValue<Job>> {
-  /// See also [jobStream].
-  const JobStreamFamily();
+/// See also [journeyStream].
+class JourneyStreamFamily extends Family<AsyncValue<Job>> {
+  /// See also [journeyStream].
+  const JourneyStreamFamily();
 
-  /// See also [jobStream].
-  JobStreamProvider call(
+  /// See also [journeyStream].
+  JourneyStreamProvider call(
     String jobId,
   ) {
-    return JobStreamProvider(
+    return JourneyStreamProvider(
       jobId,
     );
   }
 
   @override
-  JobStreamProvider getProviderOverride(
-    covariant JobStreamProvider provider,
+  JourneyStreamProvider getProviderOverride(
+    covariant JourneyStreamProvider provider,
   ) {
     return call(
       provider.jobId,
@@ -99,34 +101,35 @@ class JobStreamFamily extends Family<AsyncValue<Job>> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'jobStreamProvider';
+  String? get name => r'journeyStreamProvider';
 }
 
-/// See also [jobStream].
-class JobStreamProvider extends AutoDisposeStreamProvider<Job> {
-  /// See also [jobStream].
-  JobStreamProvider(
+/// See also [journeyStream].
+class JourneyStreamProvider extends AutoDisposeStreamProvider<Job> {
+  /// See also [journeyStream].
+  JourneyStreamProvider(
     this.jobId,
   ) : super.internal(
-          (ref) => jobStream(
+          (ref) => journeyStream(
             ref,
             jobId,
           ),
-          from: jobStreamProvider,
-          name: r'jobStreamProvider',
+          from: journeyStreamProvider,
+          name: r'journeyStreamProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$jobStreamHash,
-          dependencies: JobStreamFamily._dependencies,
-          allTransitiveDependencies: JobStreamFamily._allTransitiveDependencies,
+                  : _$journeyStreamHash,
+          dependencies: JourneyStreamFamily._dependencies,
+          allTransitiveDependencies:
+              JourneyStreamFamily._allTransitiveDependencies,
         );
 
   final String jobId;
 
   @override
   bool operator ==(Object other) {
-    return other is JobStreamProvider && other.jobId == jobId;
+    return other is JourneyStreamProvider && other.jobId == jobId;
   }
 
   @override

@@ -30,7 +30,7 @@ class JobsScreen extends StatelessWidget {
             jobsScreenControllerProvider,
             (_, state) => state.showAlertDialogOnError(context),
           );
-          final jobsQuery = ref.watch(jobsQueryProvider);
+          final jobsQuery = ref.watch(journeysQueryProvider);
           return FirestoreListView<Job>(
             query: jobsQuery,
             itemBuilder: (context, doc) {

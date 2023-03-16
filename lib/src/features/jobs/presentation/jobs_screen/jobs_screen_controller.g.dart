@@ -7,7 +7,7 @@ part of 'jobs_screen_controller.dart';
 // **************************************************************************
 
 String _$jobsScreenControllerHash() =>
-    r'e3a40258404cf512fd12924d8f0a485f75d7d6fb';
+    r'1d86d15dcc61460fe67aac562c87e239f1832f27';
 
 /// See also [JobsScreenController].
 @ProviderFor(JobsScreenController)

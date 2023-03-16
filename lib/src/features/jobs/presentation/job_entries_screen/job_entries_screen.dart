@@ -13,7 +13,7 @@ class JobEntriesScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final jobAsync = ref.watch(jobStreamProvider(jobId));
+    final jobAsync = ref.watch(journeyStreamProvider(jobId));
     return ScaffoldAsyncValueWidget<Job>(
       value: jobAsync,
       data: (job) => JobEntriesPageContents(job: job),

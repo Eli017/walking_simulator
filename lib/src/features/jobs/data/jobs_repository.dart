@@ -10,30 +10,30 @@ import 'package:walking_simulator/src/features/jobs/domain/job.dart';
 
 part 'jobs_repository.g.dart';
 
-class JobsRepository {
-  const JobsRepository(this._firestore);
+class JourneysRepository {
+  const JourneysRepository(this._firestore);
   final FirebaseFirestore _firestore;
 
-  static String jobPath(String uid, String jobId) => 'users/$uid/jobs/$jobId';
-  static String jobsPath(String uid) => 'users/$uid/jobs';
+  static String journeyPath(String uid, String jobId) => 'users/$uid/journeys/$jobId';
+  static String journeysPath(String uid) => 'users/$uid/journeys';
   static String entriesPath(String uid) => EntriesRepository.entriesPath(uid);
 
   // create
-  Future<void> addJob(
+  Future<void> addJourney(
           {required UserID uid,
           required String name,
           required int ratePerHour}) =>
-      _firestore.collection(jobsPath(uid)).add({
+      _firestore.collection(journeysPath(uid)).add({
         'name': name,
         'ratePerHour': ratePerHour,
       });
 
   // update
-  Future<void> updateJob({required UserID uid, required Job job}) =>
-      _firestore.doc(jobPath(uid, job.id)).update(job.toMap());
+  Future<void> updateJourney({required UserID uid, required Job job}) =>
+      _firestore.doc(journeyPath(uid, job.id)).update(job.toMap());
 
   // delete
-  Future<void> deleteJob({required UserID uid, required JobID jobId}) async {
+  Future<void> deleteJourney({required UserID uid, required JobID jobId}) async {
     // delete where entry.jobId == job.jobId
     final entriesRef = _firestore.collection(entriesPath(uid));
     final entries = await entriesRef.get();
@@ -44,14 +44,14 @@ class JobsRepository {
       }
     }
     // delete job
-    final jobRef = _firestore.doc(jobPath(uid, jobId));
+    final jobRef = _firestore.doc(journeyPath(uid, jobId));
     await jobRef.delete();
   }
 
   // read
-  Stream<Job> watchJob({required UserID uid, required JobID jobId}) =>
+  Stream<Job> watchJourney({required UserID uid, required JobID jobId}) =>
       _firestore
-          .doc(jobPath(uid, jobId))
+          .doc(journeyPath(uid, jobId))
           .withConverter<Job>(
             fromFirestore: (snapshot, _) =>
                 Job.fromMap(snapshot.data()!, snapshot.id),
@@ -60,44 +60,44 @@ class JobsRepository {
           .snapshots()
           .map((snapshot) => snapshot.data()!);
 
-  Stream<List<Job>> watchJobs({required UserID uid}) => queryJobs(uid: uid)
+  Stream<List<Job>> watchJourneys({required UserID uid}) => queryJourneys(uid: uid)
       .snapshots()
       .map((snapshot) => snapshot.docs.map((doc) => doc.data()).toList());
 
-  Query<Job> queryJobs({required UserID uid}) =>
-      _firestore.collection(jobsPath(uid)).withConverter(
+  Query<Job> queryJourneys({required UserID uid}) =>
+      _firestore.collection(journeysPath(uid)).withConverter(
             fromFirestore: (snapshot, _) =>
                 Job.fromMap(snapshot.data()!, snapshot.id),
             toFirestore: (job, _) => job.toMap(),
           );
 
-  Future<List<Job>> fetchJobs({required UserID uid}) async {
-    final jobs = await queryJobs(uid: uid).get();
+  Future<List<Job>> fetchJourneys({required UserID uid}) async {
+    final jobs = await queryJourneys(uid: uid).get();
     return jobs.docs.map((doc) => doc.data()).toList();
   }
 }
 
 @Riverpod(keepAlive: true)
-JobsRepository jobsRepository(JobsRepositoryRef ref) {
-  return JobsRepository(FirebaseFirestore.instance);
+JourneysRepository journeysRepository(JourneysRepositoryRef ref) {
+  return JourneysRepository(FirebaseFirestore.instance);
 }
 
 @riverpod
-Query<Job> jobsQuery(JobsQueryRef ref) {
+Query<Job> journeysQuery(JourneysQueryRef ref) {
   final user = ref.watch(firebaseAuthProvider).currentUser;
   if (user == null) {
     throw AssertionError('User can\'t be null');
   }
-  final repository = ref.watch(jobsRepositoryProvider);
-  return repository.queryJobs(uid: user.uid);
+  final repository = ref.watch(journeysRepositoryProvider);
+  return repository.queryJourneys(uid: user.uid);
 }
 
 @riverpod
-Stream<Job> jobStream(JobStreamRef ref, JobID jobId) {
+Stream<Job> journeyStream(JourneyStreamRef ref, JobID jobId) {
   final user = ref.watch(firebaseAuthProvider).currentUser;
   if (user == null) {
     throw AssertionError('User can\'t be null');
   }
-  final repository = ref.watch(jobsRepositoryProvider);
-  return repository.watchJob(uid: user.uid, jobId: jobId);
+  final repository = ref.watch(journeysRepositoryProvider);
+  return repository.watchJourney(uid: user.uid, jobId: jobId);
 }

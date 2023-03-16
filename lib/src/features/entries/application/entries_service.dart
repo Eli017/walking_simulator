@@ -17,14 +17,14 @@ part 'entries_service.g.dart';
 class EntriesService {
   EntriesService(
       {required this.jobsRepository, required this.entriesRepository});
-  final JobsRepository jobsRepository;
+  final JourneysRepository jobsRepository;
   final EntriesRepository entriesRepository;
 
   /// combine List<Job>, List<Entry> into List<EntryJob>
   Stream<List<EntryJob>> _allEntriesStream(UserID uid) =>
       CombineLatestStream.combine2(
         entriesRepository.watchEntries(uid: uid),
-        jobsRepository.watchJobs(uid: uid),
+        jobsRepository.watchJourneys(uid: uid),
         _entriesJobsCombiner,
       );
 
@@ -83,7 +83,7 @@ class EntriesService {
 @riverpod
 EntriesService entriesService(EntriesServiceRef ref) {
   return EntriesService(
-    jobsRepository: ref.watch(jobsRepositoryProvider),
+    jobsRepository: ref.watch(journeysRepositoryProvider),
     entriesRepository: ref.watch(entriesRepositoryProvider),
   );
 }

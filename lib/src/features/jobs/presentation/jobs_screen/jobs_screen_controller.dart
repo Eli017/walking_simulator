@@ -19,9 +19,9 @@ class JobsScreenController extends _$JobsScreenController {
     if (currentUser == null) {
       throw AssertionError('User can\'t be null');
     }
-    final repository = ref.read(jobsRepositoryProvider);
+    final repository = ref.read(journeysRepositoryProvider);
     state = const AsyncLoading();
     state = await AsyncValue.guard(
-        () => repository.deleteJob(uid: currentUser.uid, jobId: job.id));
+        () => repository.deleteJourney(uid: currentUser.uid, jobId: job.id));
   }
 }

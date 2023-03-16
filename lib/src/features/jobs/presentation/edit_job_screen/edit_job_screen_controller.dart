@@ -27,8 +27,8 @@ class EditJobScreenController extends _$EditJobScreenController {
     // set loading state
     state = const AsyncLoading().copyWithPrevious(state);
     // check if name is already in use
-    final repository = ref.read(jobsRepositoryProvider);
-    final jobs = await repository.fetchJobs(uid: currentUser.uid);
+    final repository = ref.read(journeysRepositoryProvider);
+    final jobs = await repository.fetchJourneys(uid: currentUser.uid);
     final allLowerCaseNames =
         jobs.map((job) => job.name.toLowerCase()).toList();
     // it's ok to use the same name as the old job
@@ -44,11 +44,11 @@ class EditJobScreenController extends _$EditJobScreenController {
       if (jobId != null) {
         final job = Job(id: jobId, name: name, ratePerHour: ratePerHour);
         state = await AsyncValue.guard(
-          () => repository.updateJob(uid: currentUser.uid, job: job),
+          () => repository.updateJourney(uid: currentUser.uid, job: job),
         );
       } else {
         state = await AsyncValue.guard(
-          () => repository.addJob(
+          () => repository.addJourney(
               uid: currentUser.uid, name: name, ratePerHour: ratePerHour),
         );
       }
