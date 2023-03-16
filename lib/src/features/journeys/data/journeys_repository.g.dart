@@ -22,11 +22,11 @@ final journeysRepositoryProvider = Provider<JourneysRepository>.internal(
 );
 
 typedef JourneysRepositoryRef = ProviderRef<JourneysRepository>;
-String _$journeysQueryHash() => r'458803e0054d285ff40acf6c3fad033334f8617f';
+String _$journeysQueryHash() => r'b8f2ed77869fc8bc193478925533529ce9348796';
 
 /// See also [journeysQuery].
 @ProviderFor(journeysQuery)
-final journeysQueryProvider = AutoDisposeProvider<Query<Job>>.internal(
+final journeysQueryProvider = AutoDisposeProvider<Query<Journey>>.internal(
   journeysQuery,
   name: r'journeysQueryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -36,8 +36,8 @@ final journeysQueryProvider = AutoDisposeProvider<Query<Job>>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef JourneysQueryRef = AutoDisposeProviderRef<Query<Job>>;
-String _$journeyStreamHash() => r'5de1fb680dcc0b1d3bc216a97b060bb3199df250';
+typedef JourneysQueryRef = AutoDisposeProviderRef<Query<Journey>>;
+String _$journeyStreamHash() => r'66d2d0c486e091baceac480f4a1fd2649053014d';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -60,14 +60,14 @@ class _SystemHash {
   }
 }
 
-typedef JourneyStreamRef = AutoDisposeStreamProviderRef<Job>;
+typedef JourneyStreamRef = AutoDisposeStreamProviderRef<Journey>;
 
 /// See also [journeyStream].
 @ProviderFor(journeyStream)
 const journeyStreamProvider = JourneyStreamFamily();
 
 /// See also [journeyStream].
-class JourneyStreamFamily extends Family<AsyncValue<Job>> {
+class JourneyStreamFamily extends Family<AsyncValue<Journey>> {
   /// See also [journeyStream].
   const JourneyStreamFamily();
 
@@ -105,7 +105,7 @@ class JourneyStreamFamily extends Family<AsyncValue<Job>> {
 }
 
 /// See also [journeyStream].
-class JourneyStreamProvider extends AutoDisposeStreamProvider<Job> {
+class JourneyStreamProvider extends AutoDisposeStreamProvider<Journey> {
   /// See also [journeyStream].
   JourneyStreamProvider(
     this.jobId,

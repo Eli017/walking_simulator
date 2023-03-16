@@ -6,7 +6,7 @@ class EntryJob extends Equatable {
   const EntryJob(this.entry, this.job);
 
   final Entry entry;
-  final Job job;
+  final Journey job;
 
   @override
   List<Object?> get props => [entry, job];

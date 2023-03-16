@@ -17,7 +17,7 @@ class EntryScreenController extends _$EntryScreenController {
 
   Future<bool> submit({
     EntryID? entryId,
-    required JobID jobId,
+    required JourneyID jobId,
     required DateTime start,
     required DateTime end,
     required String comment,

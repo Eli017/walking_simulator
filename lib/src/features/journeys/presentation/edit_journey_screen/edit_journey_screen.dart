@@ -9,8 +9,8 @@ import 'package:walking_simulator/src/utils/async_value_ui.dart';
 
 class EditJobScreen extends ConsumerStatefulWidget {
   const EditJobScreen({super.key, this.jobId, this.job});
-  final JobID? jobId;
-  final Job? job;
+  final JourneyID? jobId;
+  final Journey? job;
 
   @override
   ConsumerState<EditJobScreen> createState() => _EditJobPageState();

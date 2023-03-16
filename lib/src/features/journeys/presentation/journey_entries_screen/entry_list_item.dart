@@ -12,7 +12,7 @@ class EntryListItem extends StatelessWidget {
   });
 
   final Entry entry;
-  final Job job;
+  final Journey job;
   final VoidCallback? onTap;
 
   @override
@@ -88,7 +88,7 @@ class DismissibleEntryListItem extends StatelessWidget {
 
   final Key dismissibleKey;
   final Entry entry;
-  final Job job;
+  final Journey job;
   final VoidCallback? onDismissed;
   final VoidCallback? onTap;
 

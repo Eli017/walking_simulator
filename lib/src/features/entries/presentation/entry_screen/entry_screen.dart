@@ -12,7 +12,7 @@ import 'package:walking_simulator/src/utils/format.dart';
 
 class EntryScreen extends ConsumerStatefulWidget {
   const EntryScreen({super.key, required this.jobId, this.entryId, this.entry});
-  final JobID jobId;
+  final JourneyID jobId;
   final EntryID? entryId;
   final Entry? entry;
 

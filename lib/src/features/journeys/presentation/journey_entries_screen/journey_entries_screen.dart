@@ -9,12 +9,12 @@ import 'package:walking_simulator/src/routing/app_router.dart';
 
 class JobEntriesScreen extends ConsumerWidget {
   const JobEntriesScreen({super.key, required this.jobId});
-  final JobID jobId;
+  final JourneyID jobId;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final jobAsync = ref.watch(journeyStreamProvider(jobId));
-    return ScaffoldAsyncValueWidget<Job>(
+    return ScaffoldAsyncValueWidget<Journey>(
       value: jobAsync,
       data: (job) => JobEntriesPageContents(job: job),
     );
@@ -23,7 +23,7 @@ class JobEntriesScreen extends ConsumerWidget {
 
 class JobEntriesPageContents extends StatelessWidget {
   const JobEntriesPageContents({super.key, required this.job});
-  final Job job;
+  final Journey job;
 
   @override
   Widget build(BuildContext context) {

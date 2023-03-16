@@ -12,7 +12,7 @@ class Entry extends Equatable {
     required this.comment,
   });
   final EntryID id;
-  final JobID jobId;
+  final JourneyID jobId;
   final DateTime start;
   final DateTime end;
   final String comment;

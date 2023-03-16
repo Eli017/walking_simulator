@@ -12,7 +12,7 @@ import 'package:walking_simulator/src/utils/async_value_ui.dart';
 
 class JobEntriesList extends ConsumerWidget {
   const JobEntriesList({super.key, required this.job});
-  final Job job;
+  final Journey job;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

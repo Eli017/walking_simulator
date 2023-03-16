@@ -160,7 +160,7 @@ GoRouter goRouter(GoRouterRef ref) {
                     name: AppRoute.editJob.name,
                     pageBuilder: (context, state) {
                       final jobId = state.params['id'];
-                      final job = state.extra as Job?;
+                      final job = state.extra as Journey?;
                       return MaterialPage(
                         key: state.pageKey,
                         fullscreenDialog: true,
