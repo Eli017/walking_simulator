@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:walking_simulator/src/features/authentication/data/firebase_auth_repository.dart';
 import 'package:walking_simulator/src/features/authentication/domain/app_user.dart';
 import 'package:walking_simulator/src/features/entries/domain/entry.dart';
-import 'package:walking_simulator/src/features/jobs/domain/job.dart';
+import 'package:walking_simulator/src/features/journeys/domain/journey.dart';
 
 class EntriesRepository {
   const EntriesRepository(this._firestore);
@@ -16,7 +16,7 @@ class EntriesRepository {
   // create
   Future<void> addEntry({
     required UserID uid,
-    required JobID jobId,
+    required JourneyID jobId,
     required DateTime start,
     required DateTime end,
     required String comment,
@@ -40,12 +40,12 @@ class EntriesRepository {
       _firestore.doc(entryPath(uid, entryId)).delete();
 
   // read
-  Stream<List<Entry>> watchEntries({required UserID uid, JobID? jobId}) =>
+  Stream<List<Entry>> watchEntries({required UserID uid, JourneyID? jobId}) =>
       queryEntries(uid: uid, jobId: jobId)
           .snapshots()
           .map((snapshot) => snapshot.docs.map((doc) => doc.data()).toList());
 
-  Query<Entry> queryEntries({required UserID uid, JobID? jobId}) {
+  Query<Entry> queryEntries({required UserID uid, JourneyID? jobId}) {
     Query<Entry> query =
         _firestore.collection(entriesPath(uid)).withConverter<Entry>(
               fromFirestore: (snapshot, _) =>
@@ -64,7 +64,7 @@ final entriesRepositoryProvider = Provider<EntriesRepository>((ref) {
 });
 
 final jobEntriesQueryProvider =
-    Provider.autoDispose.family<Query<Entry>, JobID>((ref, jobId) {
+    Provider.autoDispose.family<Query<Entry>, JourneyID>((ref, jobId) {
   final user = ref.watch(firebaseAuthProvider).currentUser;
   if (user == null) {
     throw AssertionError('User can\'t be null when fetching jobs');

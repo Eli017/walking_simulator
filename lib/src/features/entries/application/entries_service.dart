@@ -6,10 +6,10 @@ import 'package:walking_simulator/src/features/entries/data/entries_repository.d
 import 'package:walking_simulator/src/features/entries/domain/daily_jobs_details.dart';
 import 'package:walking_simulator/src/features/entries/domain/entries_list_tile_model.dart';
 import 'package:walking_simulator/src/features/entries/domain/entry_job.dart';
-import 'package:walking_simulator/src/features/jobs/data/jobs_repository.dart';
+import 'package:walking_simulator/src/features/journeys/data/journeys_repository.dart';
 import 'package:walking_simulator/src/utils/format.dart';
 import 'package:walking_simulator/src/features/entries/domain/entry.dart';
-import 'package:walking_simulator/src/features/jobs/domain/job.dart';
+import 'package:walking_simulator/src/features/journeys/domain/journey.dart';
 
 part 'entries_service.g.dart';
 
@@ -17,21 +17,21 @@ part 'entries_service.g.dart';
 class EntriesService {
   EntriesService(
       {required this.jobsRepository, required this.entriesRepository});
-  final JobsRepository jobsRepository;
+  final JourneysRepository jobsRepository;
   final EntriesRepository entriesRepository;
 
   /// combine List<Job>, List<Entry> into List<EntryJob>
   Stream<List<EntryJob>> _allEntriesStream(UserID uid) =>
       CombineLatestStream.combine2(
         entriesRepository.watchEntries(uid: uid),
-        jobsRepository.watchJobs(uid: uid),
+        jobsRepository.watchJourneys(uid: uid),
         _entriesJobsCombiner,
       );
 
   static List<EntryJob> _entriesJobsCombiner(
-      List<Entry> entries, List<Job> jobs) {
+      List<Entry> entries, List<Journey> jobs) {
     return entries.map((entry) {
-      final job = jobs.firstWhere((job) => job.id == entry.jobId);
+      final job = jobs.firstWhere((job) => job.id == entry.journeyId);
       return EntryJob(entry, job);
     }).toList();
   }
@@ -83,7 +83,7 @@ class EntriesService {
 @riverpod
 EntriesService entriesService(EntriesServiceRef ref) {
   return EntriesService(
-    jobsRepository: ref.watch(jobsRepositoryProvider),
+    jobsRepository: ref.watch(journeysRepositoryProvider),
     entriesRepository: ref.watch(entriesRepositoryProvider),
   );
 }

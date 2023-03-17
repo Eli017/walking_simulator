@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:walking_simulator/src/utils/format.dart';
 import 'package:walking_simulator/src/features/entries/domain/entry.dart';
-import 'package:walking_simulator/src/features/jobs/domain/job.dart';
+import 'package:walking_simulator/src/features/journeys/domain/journey.dart';
 
 class EntryListItem extends StatelessWidget {
   const EntryListItem({
     super.key,
     required this.entry,
-    required this.job,
+    required this.journey,
     this.onTap,
   });
 
   final Entry entry;
-  final Job job;
+  final Journey journey;
   final VoidCallback? onTap;
 
   @override
@@ -40,7 +40,7 @@ class EntryListItem extends StatelessWidget {
     final endTime = TimeOfDay.fromDateTime(entry.end).format(context);
     final durationFormatted = Format.hours(entry.durationInHours);
 
-    final pay = job.ratePerHour * entry.durationInHours;
+    final pay = journey.distance * entry.durationInHours;
     final payFormatted = Format.currency(pay);
 
     return Column(
@@ -51,7 +51,7 @@ class EntryListItem extends StatelessWidget {
               style: const TextStyle(fontSize: 18.0, color: Colors.grey)),
           const SizedBox(width: 15.0),
           Text(startDate, style: const TextStyle(fontSize: 18.0)),
-          if (job.ratePerHour > 0.0) ...<Widget>[
+          if (journey.distance > 0.0) ...<Widget>[
             Expanded(child: Container()),
             Text(
               payFormatted,
@@ -81,14 +81,14 @@ class DismissibleEntryListItem extends StatelessWidget {
     super.key,
     required this.dismissibleKey,
     required this.entry,
-    required this.job,
+    required this.journey,
     this.onDismissed,
     this.onTap,
   });
 
   final Key dismissibleKey;
   final Entry entry;
-  final Job job;
+  final Journey journey;
   final VoidCallback? onDismissed;
   final VoidCallback? onTap;
 
@@ -101,7 +101,7 @@ class DismissibleEntryListItem extends StatelessWidget {
       onDismissed: (direction) => onDismissed?.call(),
       child: EntryListItem(
         entry: entry,
-        job: job,
+        journey: journey,
         onTap: onTap,
       ),
     );

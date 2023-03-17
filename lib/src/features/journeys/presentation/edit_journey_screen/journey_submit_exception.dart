@@ -1,6 +1,6 @@
-class JobSubmitException {
+class JourneySubmitException {
   String get title => 'Name already used';
-  String get description => 'Please choose a different job name';
+  String get description => 'Please choose a different journey name';
 
   @override
   String toString() {

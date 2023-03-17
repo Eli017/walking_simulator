@@ -30,7 +30,7 @@ class _ScaffoldWithBottomNavBarState extends State<ScaffoldWithBottomNavBar> {
       // Note: this won't remember the previous state of the route
       // More info here:
       // https://github.com/flutter/flutter/issues/99124
-      context.goNamed(AppRoute.jobs.name);
+      context.goNamed(AppRoute.journeys.name);
     } else if (index == 1) {
       context.goNamed(AppRoute.entries.name);
     } else if (index == 2) {
@@ -49,7 +49,7 @@ class _ScaffoldWithBottomNavBarState extends State<ScaffoldWithBottomNavBar> {
           // products
           BottomNavigationBarItem(
             icon: const Icon(Icons.work),
-            label: 'Jobs'.hardcoded,
+            label: 'Journeys'.hardcoded,
           ),
           BottomNavigationBarItem(
             icon: const Icon(Icons.view_headline),

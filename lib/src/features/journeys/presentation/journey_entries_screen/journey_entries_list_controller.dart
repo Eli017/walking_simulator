@@ -5,10 +5,10 @@ import 'package:walking_simulator/src/features/authentication/data/firebase_auth
 import 'package:walking_simulator/src/features/entries/data/entries_repository.dart';
 import 'package:walking_simulator/src/features/entries/domain/entry.dart';
 
-part 'job_entries_list_controller.g.dart';
+part 'journey_entries_list_controller.g.dart';
 
 @riverpod
-class JobsEntriesListController extends _$JobsEntriesListController {
+class JourneysEntriesListController extends _$JourneysEntriesListController {
   @override
   FutureOr<void> build() {
     // ok to leave this empty if the return type is FutureOr<void>

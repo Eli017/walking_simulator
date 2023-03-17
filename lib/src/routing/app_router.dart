@@ -5,12 +5,12 @@ import 'package:walking_simulator/src/features/authentication/presentation/custo
 import 'package:walking_simulator/src/features/authentication/presentation/custom_sign_in_screen.dart';
 import 'package:walking_simulator/src/features/entries/presentation/entries_screen.dart';
 import 'package:walking_simulator/src/features/entries/domain/entry.dart';
-import 'package:walking_simulator/src/features/jobs/domain/job.dart';
+import 'package:walking_simulator/src/features/journeys/domain/journey.dart';
 import 'package:walking_simulator/src/features/entries/presentation/entry_screen/entry_screen.dart';
-import 'package:walking_simulator/src/features/jobs/presentation/job_entries_screen/job_entries_screen.dart';
+import 'package:walking_simulator/src/features/journeys/presentation/journey_entries_screen/journey_entries_screen.dart';
 import 'package:go_router/go_router.dart';
-import 'package:walking_simulator/src/features/jobs/presentation/edit_job_screen/edit_job_screen.dart';
-import 'package:walking_simulator/src/features/jobs/presentation/jobs_screen/jobs_screen.dart';
+import 'package:walking_simulator/src/features/journeys/presentation/edit_journey_screen/edit_journey_screen.dart';
+import 'package:walking_simulator/src/features/journeys/presentation/journeys_screen/journeys_screen.dart';
 import 'package:walking_simulator/src/features/onboarding/data/onboarding_repository.dart';
 import 'package:walking_simulator/src/features/onboarding/presentation/onboarding_screen.dart';
 import 'package:walking_simulator/src/routing/go_router_refresh_stream.dart';
@@ -25,10 +25,10 @@ final _shellNavigatorKey = GlobalKey<NavigatorState>();
 enum AppRoute {
   onboarding,
   signIn,
-  jobs,
-  job,
-  addJob,
-  editJob,
+  journeys,
+  journey,
+  addJourney,
+  editJourney,
   entry,
   addEntry,
   editEntry,
@@ -57,10 +57,10 @@ GoRouter goRouter(GoRouterRef ref) {
       final isLoggedIn = authRepository.currentUser != null;
       if (isLoggedIn) {
         if (state.subloc.startsWith('/signIn')) {
-          return '/jobs';
+          return '/journeys';
         }
       } else {
-        if (state.subloc.startsWith('/jobs') ||
+        if (state.subloc.startsWith('/journeys') ||
             state.subloc.startsWith('/entries') ||
             state.subloc.startsWith('/account')) {
           return '/signIn';
@@ -93,33 +93,33 @@ GoRouter goRouter(GoRouterRef ref) {
         },
         routes: [
           GoRoute(
-            path: '/jobs',
-            name: AppRoute.jobs.name,
+            path: '/journeys',
+            name: AppRoute.journeys.name,
             pageBuilder: (context, state) => NoTransitionPage(
               key: state.pageKey,
-              child: const JobsScreen(),
+              child: const JourneysScreen(),
             ),
             routes: [
               GoRoute(
                 path: 'add',
-                name: AppRoute.addJob.name,
+                name: AppRoute.addJourney.name,
                 parentNavigatorKey: _rootNavigatorKey,
                 pageBuilder: (context, state) {
                   return MaterialPage(
                     key: state.pageKey,
                     fullscreenDialog: true,
-                    child: const EditJobScreen(),
+                    child: const EditJourneyScreen(),
                   );
                 },
               ),
               GoRoute(
                 path: ':id',
-                name: AppRoute.job.name,
+                name: AppRoute.journey.name,
                 pageBuilder: (context, state) {
                   final id = state.params['id']!;
                   return MaterialPage(
                     key: state.pageKey,
-                    child: JobEntriesScreen(jobId: id),
+                    child: JourneyEntriesScreen(journeyId: id),
                   );
                 },
                 routes: [
@@ -157,14 +157,14 @@ GoRouter goRouter(GoRouterRef ref) {
                   ),
                   GoRoute(
                     path: 'edit',
-                    name: AppRoute.editJob.name,
+                    name: AppRoute.editJourney.name,
                     pageBuilder: (context, state) {
                       final jobId = state.params['id'];
-                      final job = state.extra as Job?;
+                      final job = state.extra as Journey?;
                       return MaterialPage(
                         key: state.pageKey,
                         fullscreenDialog: true,
-                        child: EditJobScreen(jobId: jobId, job: job),
+                        child: EditJourneyScreen(journeyId: jobId, journey: job),
                       );
                     },
                   ),

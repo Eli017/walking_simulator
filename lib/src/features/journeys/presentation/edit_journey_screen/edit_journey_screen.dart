@@ -3,20 +3,20 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:walking_simulator/src/features/jobs/domain/job.dart';
-import 'package:walking_simulator/src/features/jobs/presentation/edit_job_screen/edit_job_screen_controller.dart';
+import 'package:walking_simulator/src/features/journeys/domain/journey.dart';
+import 'package:walking_simulator/src/features/journeys/presentation/edit_journey_screen/edit_journey_screen_controller.dart';
 import 'package:walking_simulator/src/utils/async_value_ui.dart';
 
-class EditJobScreen extends ConsumerStatefulWidget {
-  const EditJobScreen({super.key, this.jobId, this.job});
-  final JobID? jobId;
-  final Job? job;
+class EditJourneyScreen extends ConsumerStatefulWidget {
+  const EditJourneyScreen({super.key, this.journeyId, this.journey});
+  final JourneyID? journeyId;
+  final Journey? journey;
 
   @override
-  ConsumerState<EditJobScreen> createState() => _EditJobPageState();
+  ConsumerState<EditJourneyScreen> createState() => _EditJourneyPageState();
 }
 
-class _EditJobPageState extends ConsumerState<EditJobScreen> {
+class _EditJourneyPageState extends ConsumerState<EditJourneyScreen> {
   final _formKey = GlobalKey<FormState>();
 
   String? _name;
@@ -25,9 +25,9 @@ class _EditJobPageState extends ConsumerState<EditJobScreen> {
   @override
   void initState() {
     super.initState();
-    if (widget.job != null) {
-      _name = widget.job?.name;
-      _ratePerHour = widget.job?.ratePerHour;
+    if (widget.journey != null) {
+      _name = widget.journey?.name;
+      _ratePerHour = widget.journey?.distance;
     }
   }
 
@@ -43,11 +43,11 @@ class _EditJobPageState extends ConsumerState<EditJobScreen> {
   Future<void> _submit() async {
     if (_validateAndSaveForm()) {
       final success =
-          await ref.read(editJobScreenControllerProvider.notifier).submit(
-                jobId: widget.jobId,
-                oldJob: widget.job,
+          await ref.read(editJourneyScreenControllerProvider.notifier).submit(
+                journeyId: widget.journeyId,
+                oldJourney: widget.journey,
                 name: _name ?? '',
-                ratePerHour: _ratePerHour ?? 0,
+                distance: _ratePerHour ?? 0,
               );
       if (success && mounted) {
         context.pop();
@@ -58,13 +58,13 @@ class _EditJobPageState extends ConsumerState<EditJobScreen> {
   @override
   Widget build(BuildContext context) {
     ref.listen<AsyncValue>(
-      editJobScreenControllerProvider,
+      editJourneyScreenControllerProvider,
       (_, state) => state.showAlertDialogOnError(context),
     );
-    final state = ref.watch(editJobScreenControllerProvider);
+    final state = ref.watch(editJourneyScreenControllerProvider);
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.job == null ? 'New Job' : 'Edit Job'),
+        title: Text(widget.journey == null ? 'New Journey' : 'Edit Journey'),
         actions: <Widget>[
           TextButton(
             onPressed: state.isLoading ? null : _submit,
@@ -106,7 +106,7 @@ class _EditJobPageState extends ConsumerState<EditJobScreen> {
   List<Widget> _buildFormChildren() {
     return [
       TextFormField(
-        decoration: const InputDecoration(labelText: 'Job name'),
+        decoration: const InputDecoration(labelText: 'Journey name'),
         keyboardAppearance: Brightness.light,
         initialValue: _name,
         validator: (value) =>
